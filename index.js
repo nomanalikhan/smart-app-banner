@@ -77,10 +77,10 @@ var SmartBanner = function (options) {
 	var unsupported = !this.type;
 	var isMobileSafari = (this.type === 'ios' && agent.browser.name === 'Mobile Safari' && Number(agent.os.version) >= 6);
 	var runningStandAlone = navigator.standalone;
-	var userDismissed = cookie.get('smartbanner-closed');
-	var userInstalled = cookie.get('smartbanner-installed');
+	// var userDismissed = cookie.get('smartbanner-closed');
+	// var userInstalled = cookie.get('smartbanner-installed');
 
-	if (unsupported || isMobileSafari || runningStandAlone || userDismissed || userInstalled) {
+	if (unsupported || isMobileSafari || runningStandAlone) {
 		return;
 	}
 
@@ -153,17 +153,17 @@ SmartBanner.prototype = {
 	},
 	close: function () {
 		this.hide();
-		cookie.set('smartbanner-closed', 'true', {
-			path: '/',
-			expires: new Date(Number(new Date()) + (this.options.daysHidden * 1000 * 60 * 60 * 24))
-		});
+		// cookie.set('smartbanner-closed', 'true', {
+		// 	path: '/',
+		// 	expires: new Date(Number(new Date()) + (this.options.daysHidden * 1000 * 60 * 60 * 24))
+		// });
 	},
 	install: function () {
 		this.hide();
-		cookie.set('smartbanner-installed', 'true', {
-			path: '/',
-			expires: new Date(Number(new Date()) + (this.options.daysReminder * 1000 * 60 * 60 * 24))
-		});
+		// cookie.set('smartbanner-installed', 'true', {
+		// 	path: '/',
+		// 	expires: new Date(Number(new Date()) + (this.options.daysReminder * 1000 * 60 * 60 * 24))
+		// });
 	},
 	parseAppId: function () {
 		var meta = q('meta[name="' + this.appMeta + '"]');
